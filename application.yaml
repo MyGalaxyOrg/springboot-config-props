@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    password: root_user
+    username: root
+    url: 'jdbc:mysql://localhost:3306/dbmicroservices?useTimezone=true&serverTimezone=UTC '
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: 'false'
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka/
+  instance:
+    hostname: localhost
