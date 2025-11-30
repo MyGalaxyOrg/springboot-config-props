@@ -2,6 +2,72 @@ spring:
   jpa:
     hibernate:
       use-new-id-generator-mappings: 'false'
+
+    cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: employee-service
+          uri: lb://EMPLOYEE-SERVICE
+          predicates:
+            - Path=/ems/**
+          filters:
+            - AuthenticationFilter
+
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/api/gw/**
+          filters:
+            - AuthenticationFilter
+
+        - id: asset-service
+          uri: lb://ASSET-SERVICE
+          predicates:
+            - Path=/ams/**
+          filters:
+            - AuthenticationFilter
+
+        - id: admin-portal
+          uri: lb://ADMIN-PORTAL
+          predicates:
+            - Path=/admin/**
+          filters:
+            - AuthenticationFilter
+
+        - id: inventory-service
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            - Path=/inv/**
+          filters:
+            - AuthenticationFilter
+
+        - id: it-change-management
+          uri: lb://it-change-management
+          predicates:
+            - Path=/itcms/**
+          filters:
+            - AuthenticationFilter
+
+        - id: asset-disposal-management
+          uri: lb://asset-disposal-management
+          predicates:
+            - Path=/adms/**
+          filters:
+            - AuthenticationFilter
+
+        - id: billing-service
+          uri: lb://billing-service
+          predicates:
+            - Path=/api/billing/**
+          filters:
+            - AuthenticationFilter
+
+      default-filters:
+        - PreserveHostHeader
   
 eureka:
   client:
