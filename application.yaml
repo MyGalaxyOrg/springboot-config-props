@@ -69,7 +69,7 @@ spring:
         - id: patient-service
           uri: lb://PATIENT-SERVICE
           predicates:
-            - Path=/patient-service/**
+            - Path=/patient/**
           filters:
             - AuthenticationFilter
 
