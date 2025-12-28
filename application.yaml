@@ -66,6 +66,14 @@ spring:
           filters:
             - AuthenticationFilter
 
+        - id: patient-service
+          uri: lb://PATIENT-SERVICE
+          predicates:
+            - Path=/api/patients/**
+          filters:
+            - AuthenticationFilter
+
+
       default-filters:
         - PreserveHostHeader
   
