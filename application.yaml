@@ -73,7 +73,7 @@ spring:
           filters:
             - AuthenticationFilter
 
-       - id: doctor-service
+        - id: doctor-service
           uri: lb://doctor-service
           predicates:
             - Path=/doctors/**
